@@ -1,0 +1,48 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @company.name %>
+</p>
+ 
+<p>
+  <strong>Head Office:</strong>
+  <%= @company.headoffice %>
+</p>
+ 
+<p>
+  <strong>Contact:</strong>
+  <%= @company.contact %>
+</p>
+
+
+<h2>Product List</h2>
+<% @company.products.each do |product| %>
+  <p>
+    <strong>Name:</strong>
+    <%= product.name %>
+  </p>
+ 
+  <p>
+    <strong>Type:</strong>
+    <%= product.ptype %>
+  </p>
+<% end %>
+ 
+
+<h2>Add Products</h2>
+<%= form_with(model: [ @company, @company.products.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :type %><br>
+    <%= form.text_field :ptype %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+ 
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

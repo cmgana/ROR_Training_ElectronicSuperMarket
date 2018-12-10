@@ -1,0 +1,27 @@
+
+
+<h1>Company List</h1>
+
+
+<%= link_to 'Add Company', new_company_path %> 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Head Office</th>
+    <th>Contact</th>
+    <th colspan=3></th>
+  </tr>
+ 
+  <% @companies.each do |company| %>
+    <tr>
+      <td><%= company.name %></td>
+      <td><%= company.headoffice %></td>
+      <td><%= company.contact %></td>
+      <td><%= link_to 'Show', company_path(company) %></td>
+      <td><%= link_to 'Edit', edit_company_path(company) %></td>
+      <td><%= link_to 'Destroy', company_path(company),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
