@@ -16,21 +16,38 @@
 
 
 <h2>Product List</h2>
-<% @company.products.each do |product| %>
-  <p>
-    <strong>Name:</strong>
-    <%= product.name %>
-  </p>
- 
-  <p>
-    <strong>Type:</strong>
-    <%= product.ptype %>
-  </p>
+<table>
+  <tr>
+    <th><strong>Name:</strong></th>
+    <th><strong>Type:</strong></th>
+  </tr>
+
+  <% @company.products.each do |product| %>
+  <tr>
+    <td><%= product.name %></td>
+    <td><%= product.ptype %></td>
+  </tr>
 <% end %>
- 
+
+</table>
+
+
 
 <h2>Add Products</h2>
 <%= form_with(model: [ @company, @company.products.build ], local: true) do |form| %>
+
+  <% if @company.errors.any? %>
+
+    <h2>
+      <%= pluralize(@company.errors.count, "error") %> prohibited  this product from being saved:
+    </h2>
+    <ul>
+      <% @company.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+  <% end %>
   <p>
     <%= form.label :name %><br>
     <%= form.text_field :name %>

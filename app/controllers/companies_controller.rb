@@ -1,10 +1,15 @@
 class CompaniesController < ApplicationController
-
-
-  http_basic_authenticate_with name: "gana", password: "12345", except: [:index, :show]
+  #http_basic_authenticate_with name: "gana", password: "12345", except: [:index, :show]
 
 def index
 	@companies = Company.all
+
+end
+
+
+def index_home_appliance
+	@companies = Company.home_appliance_only
+
 end
 
 def edit

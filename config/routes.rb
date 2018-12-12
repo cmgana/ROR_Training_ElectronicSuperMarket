@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get 'welcome/index'
   
 resources :companies do
+  collection do
+    get 'index_home_appliance'
+  end
   resources :products
 end
 
